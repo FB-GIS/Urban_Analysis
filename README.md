@@ -72,7 +72,6 @@ The analysis follows four main steps:
   matplotlib  
   contextily  
   shapely  
-  session_info  
 
 
 ## DATA
