@@ -77,8 +77,7 @@ The analysis follows four main steps:
 ## DATA
 -------
   Source   : OpenStreetMap (via OSMnx)  
-  Coverage : 16 arrondissements of Marseille (1er to 16e)  
-  Storage  : data/<district_name>/*.geojson and *.graphml  
+  Spatial extent : 16 arrondissements of Marseille (1er to 16e)  
 
 
 ## NOTES
