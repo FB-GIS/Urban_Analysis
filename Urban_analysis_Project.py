@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
 
 # =============================================================================
 # URBAN QUALITY OF LIFE INDEX — MARSEILLE DISTRICTS
@@ -12,9 +7,6 @@
 # Each district is characterized by 10 urban indicators (densities / coverages),
 # normalized and aggregated into a single weighted index.
 # =============================================================================
-
-
-# In[2]:
 
 
 # --- Imports -----------------------------------------------------------------
@@ -33,15 +25,11 @@ from collections import Counter
 import re
 
 
-# In[3]:
-
 
 # =============================================================================
 # STEP 1 — DATA COLLECTION
 # =============================================================================
 
-
-# In[4]:
 
 
 def get_place_profile(place):
@@ -104,13 +92,7 @@ def get_place_profile(place):
     employment_centers.to_file(folderout + '/employment_centers.geojson', driver='GeoJSON')
 
 
-# In[5]:
-
-
 # --- Run data collection for all 16 Marseille districts ---------------------
-
-
-# In[6]:
 
 
 # Build district name list: '1er', '2e', ..., '16e'
@@ -124,15 +106,11 @@ for dn in district_numbers:
     admin_d.to_file('data/' + place + '/admin_boundaries.geojson', driver='GeoJSON')
 
 
-# In[7]:
-
 
 # =============================================================================
 # STEP 2 — DISTRICT CHARACTERIZATION
 # =============================================================================
 
-
-# In[8]:
 
 
 def characterize_district(place) :
@@ -215,8 +193,6 @@ def characterize_district(place) :
     return df
 
 
-# In[9]:
-
 
 # --- Run characterization for all districts and concatenate results ----------
 districts = [f for f in os.listdir('data') if '.' not in f]
@@ -232,8 +208,6 @@ for district in districts :
 df_all = pd.concat(df_all).set_index('place')
 
 
-# In[10]:
-
 
 # --- Correlation matrix — exploratory check ---------------------------------
 # High correlations between indicators may suggest redundancy
@@ -242,21 +216,12 @@ df_all = pd.concat(df_all).set_index('place')
 df_all.corr()
 
 
-# In[11]:
-
-
 # =============================================================================
 # STEP 3 — INDEX COMPUTATION
 # =============================================================================
 
 
-# In[12]:
-
-
 df = df_all.copy()
-
-
-# In[13]:
 
 
 # --- Load administrative boundaries for all districts -----------------------
@@ -270,8 +235,6 @@ for district in os.listdir('data'):
 
 gdf_admin = pd.concat(gdf_admin)
 
-
-# In[14]:
 
 
 # --- Normalize all indicators to a [1, 10] scale ----------------------------
@@ -287,8 +250,6 @@ df_normalized = pd.DataFrame(
 
 df_normalized.head()
 
-
-# In[15]:
 
 
 # --- Define indicator weights -----------------------------------------------
@@ -310,16 +271,12 @@ weights = {
 }
 
 
-# In[16]:
-
 
 # Apply weights: multiply each indicator column by its corresponding weight
 
 for feature in df_normalized.columns:
     df_normalized[feature] = df_normalized[feature] * weights[feature]
 
-
-# In[17]:
 
 
 # Compute the Unified Index as the weighted sum of all indicators
@@ -328,8 +285,6 @@ df_normalized['Unified Index'] = df_normalized.sum(axis=1)
 
 df_normalized[['Unified Index']]
 
-
-# In[18]:
 
 
 # Re-normalize the Unified Index to [1, 10] for readability and round to integer
@@ -341,23 +296,17 @@ df_normalized['Unified Index'] = scaler.fit_transform(df_normalized[['Unified In
 df_normalized['Unified Index'] = df_normalized['Unified Index'].round(0)
 
 
-# In[19]:
-
 
 # =============================================================================
 # STEP 4 — VISUALIZATION
 # =============================================================================
 
 
-# In[20]:
-
 
 # --- Merge index with administrative boundaries for mapping -----------------
 
 gdf_index = gdf_admin[['place', 'geometry']].merge(df_normalized[['Unified Index']], left_on='place', right_index=True)
 
-
-# In[21]:
 
 
 # --- Choropleth map of the Unified Index across all 16 districts ------------
@@ -369,8 +318,6 @@ gdf_index.plot(ax=ax, edgecolor='w', linewidth=1.5, alpha=0.9, column='Unified I
 
 ax.axis('off');
 
-
-# In[22]:
 
 
 # --- Bonus: Detailed building footprint map for a single district -----------
@@ -384,8 +331,6 @@ footprints = ox.features_from_polygon(admin_poly, tags={'building':True})
 # Count and rank amenity types found within buildings (exploratory analysis)
 Counter(footprints.dropna(subset=['amenity'])['amenity'].to_list()).most_common()
 
-
-# In[23]:
 
 
 # --- Plot building footprints colored by amenity type -----------------------
@@ -412,104 +357,6 @@ ax.set_xlim([886727, 890700])
 
 ax.axis('off');
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
