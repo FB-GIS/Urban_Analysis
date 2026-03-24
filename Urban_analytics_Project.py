@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import geopandas as gpd
 import shapely
 import pandas as pd
@@ -17,8 +11,6 @@ import contextily as ctx
 from collections import Counter
 import re
 
-
-# In[2]:
 
 
 def get_place_profile(place):
@@ -53,9 +45,6 @@ def get_place_profile(place):
     employment_centers.to_file(folderout + '/employment_centers.geojson', driver='GeoJSON')
 
 
-# In[3]:
-
-
 district_numbers = [f"{i}{'er' if i < 2 else 'e'}" for i in range(1, 17)]
 
 for dn in district_numbers:
@@ -64,8 +53,6 @@ for dn in district_numbers:
     get_place_profile(place)
     admin_d.to_file('data/' + place + '/admin_boundaries.geojson', driver='GeoJSON')
 
-
-# In[4]:
 
 
 def characterize_district(place) :
@@ -121,8 +108,6 @@ def characterize_district(place) :
     return df
 
 
-# In[18]:
-
 
 districts = [f for f in os.listdir('data') if '.' not in f]
 
@@ -135,21 +120,9 @@ for district in districts :
 
 df_all = pd.concat(df_all).set_index('place')
 
-
-# In[19]:
-
-
 df_all.corr()
 
-
-# In[20]:
-
-
 df = df_all.copy()
-
-
-# In[21]:
-
 
 gdf_admin = []
 
@@ -161,10 +134,6 @@ for district in os.listdir('data'):
 
 gdf_admin = pd.concat(gdf_admin)
 
-
-# In[22]:
-
-
 scaler = MinMaxScaler(feature_range=(1,10))
 
 df_normalized = pd.DataFrame(
@@ -174,10 +143,6 @@ df_normalized = pd.DataFrame(
 )
 
 df_normalized.head()
-
-
-# In[23]:
-
 
 weights = {
     'Road Density': 0.1,
@@ -193,22 +158,14 @@ weights = {
 }
 
 
-# In[24]:
-
-
 for feature in df_normalized.columns:
     df_normalized[feature] = df_normalized[feature] * weights[feature]
 
-
-# In[25]:
 
 
 df_normalized['Unified Index'] = df_normalized.sum(axis=1)
 
 df_normalized[['Unified Index']]
-
-
-# In[26]:
 
 
 scaler = MinMaxScaler(feature_range=(1,10))
@@ -218,13 +175,7 @@ df_normalized['Unified Index'] = scaler.fit_transform(df_normalized[['Unified In
 df_normalized['Unified Index'] = df_normalized['Unified Index'].round(0)
 
 
-# In[27]:
-
-
 gdf_index = gdf_admin[['place', 'geometry']].merge(df_normalized[['Unified Index']], left_on='place', right_index=True)
-
-
-# In[28]:
 
 
 f, ax = plt.subplots(1,1, figsize=(10,10))
@@ -233,19 +184,11 @@ gdf_index.plot(ax=ax, edgecolor='w', linewidth=1.5, alpha=0.9, column='Unified I
 
 ax.axis('off');
 
-
-# In[29]:
-
-
 admin_poly = admin_d.geometry.to_list()[0]
 
 footprints = ox.features_from_polygon(admin_poly, tags={'building':True})
 
 Counter(footprints.dropna(subset=['amenity'])['amenity'].to_list()).most_common()
-
-
-# In[43]:
-
 
 crs_local = 2154
 
@@ -263,94 +206,3 @@ ax.set_ylim([6252000, 6255800.08])
 ax.set_xlim([886727, 890700])
 
 ax.axis('off');
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
