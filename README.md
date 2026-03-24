@@ -1,14 +1,14 @@
 # Urban Quality of Life Index — Marseille Districts
 
 ## PROJECT OVERVIEW
-------------------
+
 This project computes a composite Urban Quality of Life Index for each of the 16 arrondissements (districts) of Marseille, France.  
 Data is collected from OpenStreetMap via the OSMnx library, processed and  normalized, then aggregated into a single weighted index per district.  
 Results are visualized as a choropleth map.  
 
 
 ## WORKFLOW
------------
+
 The analysis follows four main steps:  
 
   1. DATA COLLECTION (get_place_profile)  
@@ -63,7 +63,7 @@ The analysis follows four main steps:
 
 
 ## DEPENDENCIES
----------------
+
   geopandas  
   pandas  
   osmnx  
@@ -75,13 +75,13 @@ The analysis follows four main steps:
 
 
 ## DATA
--------
+
   Source   : OpenStreetMap (from OSMnx)  
   Spatial extent : 16 arrondissements of Marseille (1er to 16e)  
 
 
 ## NOTES
---------
+
   - The index is relative : scores reflect ranking among the 16 districts,
     not absolute quality standards.
   - Weights are user-defined and can be adjusted in the weights dictionary
