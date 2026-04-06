@@ -80,6 +80,7 @@ The analysis follows four main steps:
   | Bike paths | Total length (m) | 1,600 m |  
   | Parks | Total area (m²) | 800 m |  
 
+
   5. VISUALIZATION  
      - Choropleth map for each Index (Livability and Accessibility) across all 16 districts  
        (RdYlGn color ramp — red = low quality, green = high quality).  
