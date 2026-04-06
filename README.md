@@ -71,10 +71,10 @@ The analysis follows four main steps:
   overpy  
   matplotlib  
   contextily  
-  shapely
-  h3
-  h3pandas
-  leafmap
+  shapely  
+  h3  
+  h3pandas  
+  leafmap  
 
 
 ## DATA
