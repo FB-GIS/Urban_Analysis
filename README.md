@@ -83,11 +83,13 @@ The analysis follows four main steps:
   
   | Indicator | Measurement | Buffer (hex stage) |
   |---|---|---|  
-  | Schools | Count | 1,600 m |  
-  | Subway stations | Count | 1,600 m |  
-  | Bike paths | Total length (m) | 1,600 m |  
-  | Parks | Total area (m²) | 800 m |            
-                                   
+  | Healthcare | Count | 1,600 m |  
+  | Recreation| Count | 1,600 m |  
+  | Public Transports | Count | 800 m |  
+  | Parks | Total area (m²) | 800 m |   
+  | Emergency Services| Count | 1,600 m | 
+  | Commerce| Count | 1,600 m | 
+  | Employment Centers| Count | 1,600 m |                                    
                       
                     
   5. VISUALIZATION  
