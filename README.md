@@ -6,14 +6,15 @@ This project computes a composite Urban Quality of Life Index for each of the 16
 Data is collected from OpenStreetMap via the OSMnx library, processed and  normalized, then aggregated into a single weighted index per district.  
 Results are visualized as a choropleth map.  
 
-BONUS : Creation of a simple Accessibility Index for each arrondissement of Marseille. This index combine some indicators - healthcare, recreation, public  transports, parks, emergency services, commerce, employment centers - at H3 hexagonal grid cells scale (resolution 9, ~105 m edge length).  
+### BONUS :  
+Creation of a simple Accessibility Index for each arrondissement of Marseille. This index combine some indicators - healthcare, recreation, public  transports, parks, emergency services, commerce, employment centers - at H3 hexagonal grid cells scale (resolution 9, ~105 m edge length).  
 
 
 Livibility Index - Districts Visualization:  
 ![alt text](https://github.com/FB-GIS/Marseille_Urban_Livability_Index/blob/main/public/districts.png)  
     
       
-Accessibility Index - H3 Visualization:  
+(BONUS) Accessibility Index - H3 Visualization:  
 ![alt text](https://github.com/FB-GIS/Marseille_Urban_Livability_Index/blob/main/public/h3.png)  
     
     
