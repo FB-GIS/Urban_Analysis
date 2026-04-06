@@ -10,11 +10,11 @@ BONUS : Creation of a simple Accessibility Index for each arrondissement of Mars
 
 
 Livibility Index - Districts Visualization:  
-![alt text](https://github.com/FB-GIS/Marseille_Urban_Accessibility_Index/blob/main/public/districts.png)  
+![alt text](https://github.com/FB-GIS/Marseille_Urban_Livability_Index/blob/main/public/districts.png)  
     
       
 Accessibility Index - H3 Visualization:  
-![alt text](https://github.com/FB-GIS/Marseille_Urban_Accessibility_Index/blob/main/public/h3.png)  
+![alt text](https://github.com/FB-GIS/Marseille_Urban_Livability_Index/blob/main/public/h3.png)  
     
     
 ## WORKFLOW
